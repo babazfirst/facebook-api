@@ -30,18 +30,22 @@
 	</script>
 	<script>
 		// Only works after `FB.init` is called
-		function myFacebookLogin() {
+		function readFeed() {
 		  FB.login(function(){
 		  	// Note: The call will only work if you accept the permission request
-  			FB.api('/me/feed', 'post', {message: 'Hello, world!'});
+  			// access_token=360745944304175|e8uDXw0aIRKQEBfh0JTI3YBaN1E
+			var pageAccessToken = '360745944304175|e8uDXw0aIRKQEBfh0JTI3YBaN1E';
+			FB.api(
+				  '/southpark/feed',
+				  'GET',
+				  {},
+				  function(response) {
+				     Console.log(response);
+				  }
+			);
 		  }, {scope: 'publish_actions'});
 		}
-		// access_token=360745944304175|e8uDXw0aIRKQEBfh0JTI3YBaN1E
-		var pageAccessToken = '360745944304175|e8uDXw0aIRKQEBfh0JTI3YBaN1E';
-		FB.api('/me/conversations', {
-		  access_token : pageAccessToken
-		});
 	</script>
-	<button onclick="myFacebookLogin()">Login with Facebook</button>
+	<button onclick="readFeed()">feeds</button>
 </body>
 </html>
